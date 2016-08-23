@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Personal Trainer</string>
+    <string name="username">Username</string>
+    <string name="pw">Password</string>
+    <string name="button_login">Login</string>
+    <string name="bad_user_pw">User or password is wrong</string>
 </resources>
