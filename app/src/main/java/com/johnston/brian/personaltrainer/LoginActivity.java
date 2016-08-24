@@ -35,25 +35,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                if (mUser.getText().toString().equals("jdoe")) {
-                    if(mPassword.getText().toString().equals("welcome1"))
+                if (mUser.getText().toString().equals(getApplicationContext().getString(R.string.correct_user))) {
+                    if(mPassword.getText().toString().equals(getApplicationContext().getString(R.string.correct_pw)))
                         {
-                            //// TODO: 8/23/2016
+                            Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.success_login), Toast.LENGTH_SHORT).show();
 
                         }
                     else{
 
-
-
-
-
-                       Toast.makeText(getApplicationContext(), "Bad username/password", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.bad_user_pw), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
 
-
-                    Toast.makeText(getApplicationContext(), "Bad username/password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.bad_user_pw), Toast.LENGTH_SHORT).show();
                 }
             }
         });
