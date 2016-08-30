@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#CBA"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:name="android.support.v4.app.DialogFragment"
+        android:id="@+id/fragment"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/correct_user"
+        android:id="@+id/fragUser"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/loggedIn"
+        android:layout_toEndOf="@+id/loggedIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/loggedinusertext"
+        android:id="@+id/loggedIn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+</RelativeLayout>

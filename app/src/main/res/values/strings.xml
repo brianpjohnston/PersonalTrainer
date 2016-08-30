@@ -7,4 +7,26 @@
     <string name="button_login">Login</string>
     <string name="success_login">Login Successful</string>
     <string name="bad_user_pw">User or password is wrong</string>
+    <string name="loggedinusertext">Logged in: </string>
+    <string name="button_new_session">Add new sesion</string>
+    <string name="sessions">Sessions</string>
+    <string name="clients">Clients</string>
+    <string name="add_new_client">Add new client</string>
+    <string name="newClient">New Client</string>
+    <string name="session_complete">Session Complete</string>
+    <string name="completed">Completed</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_complete">Complete</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="Email_Address">Email Address</string>
+    <string name="Billing">Billing info</string>
+    <string name="cardnum">Card Number</string>
+    <string name="expiredate">Expiration Date</string>
+    <string name="billingaddress">Billing Address</string>
+    <string name="button_add">Add Client</string>
+    <string name="addSession">Purchase a session</string>
+    <string name="receipt">Receipt</string>
+    <string name="print">Print</string>
+    <string name="email">Email</string>
 </resources>
