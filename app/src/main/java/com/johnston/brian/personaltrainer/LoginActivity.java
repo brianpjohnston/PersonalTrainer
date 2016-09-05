@@ -1,13 +1,12 @@
 package com.johnston.brian.personaltrainer;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(mPassword.getText().toString().equals(getApplicationContext().getString(R.string.correct_pw)))
                         {
                             Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.success_login), Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(LoginActivity.this, Client.class);
+                            LoginActivity.this.startActivity(intent);
                         }
                     else{
 

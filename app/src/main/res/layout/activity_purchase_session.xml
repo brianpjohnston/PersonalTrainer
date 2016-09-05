@@ -11,6 +11,7 @@
 
         <fragment
             android:id="@+id/fragment_purchase"
+            android:name="com.johnston.brian.personaltrainer.UserFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/user_fragment"/>

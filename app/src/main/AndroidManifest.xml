@@ -15,7 +15,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name=".Client">
+
+        </activity>
+        <activity
+            android:name=".NewClient">
+
+        </activity>
+
+
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>

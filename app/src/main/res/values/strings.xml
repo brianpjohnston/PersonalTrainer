@@ -29,4 +29,7 @@
     <string name="receipt">Receipt</string>
     <string name="print">Print</string>
     <string name="email">Email</string>
+    <string name="logOff">Log Off</string>
+    <string name="clientAdd">Client Added!</string>
+    <string name="canceled">Action Canceled</string>
 </resources>

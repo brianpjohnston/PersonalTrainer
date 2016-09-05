@@ -12,9 +12,11 @@
 
         <fragment
             android:id="@+id/fragment_add_client"
+            android:name="com.johnston.brian.personaltrainer.UserFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout="@layout/user_fragment"/>
+            tools:layout="@layout/user_fragment"
+            />
 
     </FrameLayout>
 
@@ -42,7 +44,7 @@
                 android:layout_height="100dp"
                 android:id="@+id/client_Image"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/No_photo"/>
+                android:src="@drawable/no_photo"/>
 
             <ImageView
                 android:layout_width="50dp"
