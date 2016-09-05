@@ -32,4 +32,6 @@
     <string name="logOff">Log Off</string>
     <string name="clientAdd">Client Added!</string>
     <string name="canceled">Action Canceled</string>
+    <string name="emailSent">Email Sent!</string>
+    <string name="printing">Sent to Printer</string>
 </resources>

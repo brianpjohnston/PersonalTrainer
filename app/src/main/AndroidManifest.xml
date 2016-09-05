@@ -17,14 +17,22 @@
         </activity>
         <activity
             android:name=".Client">
-
         </activity>
         <activity
             android:name=".NewClient">
-
         </activity>
-
-
+        <activity
+            android:name=".Sessions">
+        </activity>
+        <activity
+            android:name=".Purchase">
+        </activity>
+        <activity
+            android:name=".Reciept">
+        </activity>
+        <activity
+            android:name=".SessionComplete">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
