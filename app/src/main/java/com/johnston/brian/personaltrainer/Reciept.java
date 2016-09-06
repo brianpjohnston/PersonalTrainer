@@ -3,6 +3,7 @@ package com.johnston.brian.personaltrainer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 /**
  * Created by brian on 9/5/2016.
  */
-public class Reciept extends FragmentActivity {
+public class Reciept extends AppCompatActivity {
     private Button mSendMail;
     private Button mPrint;
 

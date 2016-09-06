@@ -8,7 +8,7 @@ package com.johnston.brian.personaltrainer;
         import android.os.Bundle;
         import android.support.v7.app.AlertDialog;
 
-public class DialFragment extends android.app.DialogFragment{
+public class DialogFragment extends android.app.DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
