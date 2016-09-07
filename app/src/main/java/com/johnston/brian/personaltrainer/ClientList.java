@@ -58,10 +58,10 @@ public class ClientList extends AppCompatActivity {
 
         final ListView clientList = (ListView) findViewById(R.id.Client_list);
         final ArrayList<Object> list = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 1; i < 50; i++) {
             Client client = new Client();
             client.setmName("Client " + i);
-            list.add(client);
+            list.add(client.getmName());
         }
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         clientList.setAdapter(adapter);
