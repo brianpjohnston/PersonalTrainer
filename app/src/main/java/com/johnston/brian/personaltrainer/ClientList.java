@@ -10,13 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
- * Created by brian on 9/6/2016.
+ * Created by brian on 9/6/2016. Login activity
  */
 public class ClientList extends AppCompatActivity {
     private Button mNewClient;
@@ -57,7 +57,7 @@ public class ClientList extends AppCompatActivity {
 
 
         final ListView clientList = (ListView) findViewById(R.id.Client_list);
-        final ArrayList<Object> list = new ArrayList<Object>();
+        final ArrayList<Object> list = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             Client client = new Client();
             client.setmName("Client " + i);
