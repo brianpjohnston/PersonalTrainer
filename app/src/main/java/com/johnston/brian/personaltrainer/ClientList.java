@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,25 +30,30 @@ public class ClientList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientlist);
         mNewClient = (Button) findViewById(R.id.button_add_client);
+        mList = (ListView) findViewById(R.id.Client_list);
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ClientList.this, Sessions.class);
+                ClientList.this.startActivity(intent);
+            }
+        });
 
 
         mNewClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //// TODO: 9/5/2016 add client
-                Intent intent = new Intent(ClientList.this, NewClient.class);
-                ClientList.this.startActivity(intent);
-            }
+                                          @Override
+                                          public void onClick(View view) {
+                                              //// TODO: 9/5/2016 add client
+                                              Intent intent = new Intent(ClientList.this, NewClient.class);
+                                              ClientList.this.startActivity(intent);
+                                          }
 
 
-        }
+                                      }
         );
-        allClients();
-    }
 
 
-
-    public void allClients() {
         final ListView clientList = (ListView) findViewById(R.id.Client_list);
         final ArrayList<Object> list = new ArrayList<Object>();
         for (int i = 0; i < 50; i++) {
@@ -57,6 +63,8 @@ public class ClientList extends AppCompatActivity {
         }
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         clientList.setAdapter(adapter);
+
+
 
 
     }

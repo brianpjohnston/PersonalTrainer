@@ -6,12 +6,14 @@ import java.util.UUID;
  * Created by brian on 9/5/2016.
  */
 public class Client {
-    private UUID mID;
     private String mName;
+    private UUID mID;
+
 
 
     public Client(){
-        mID = UUID.randomUUID();
+       mID = UUID.randomUUID();
+
     }
 
     public String getmName() {
