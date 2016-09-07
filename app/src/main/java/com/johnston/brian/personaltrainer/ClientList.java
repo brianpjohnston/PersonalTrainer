@@ -1,5 +1,7 @@
 package com.johnston.brian.personaltrainer;
 
+import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -81,13 +83,22 @@ public class ClientList extends AppCompatActivity {
         int id = item.getItemId();
         if(id ==R.id.logoff);{
             super.onOptionsItemSelected(item);
-            Intent intent = new Intent(ClientList.this, LoginActivity.class);
-            startActivity(intent);
+            FragmentManager manager = getFragmentManager();
+            DialogFragment dialog = new DialogFragment();
+            dialog.show(manager, "Logout");
+
+
             return true;
-            }
 
         }
-
     }
+
+
+
+            }
+
+
+
+
 
 
