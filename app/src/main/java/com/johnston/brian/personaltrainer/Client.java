@@ -5,17 +5,21 @@ import java.util.UUID;
 /**
  * Created by brian on 9/5/2016.
  */
-public class Clients {
+public class Client {
     private UUID mID;
     private String mName;
 
 
-    public Clients(){
+    public Client(){
         mID = UUID.randomUUID();
     }
 
     public String getmName() {
         return mName;
+    }
+
+    public UUID getmID() {
+        return mID;
     }
 
     public void setmName(String mName) {

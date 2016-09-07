@@ -16,9 +16,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Client">
-        </activity>
-        <activity
             android:name=".NewClient">
         </activity>
         <activity
@@ -33,6 +30,10 @@
         <activity
             android:name=".SessionComplete">
         </activity>
+
+    <activity
+        android:name=".ClientList">
+    </activity>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>

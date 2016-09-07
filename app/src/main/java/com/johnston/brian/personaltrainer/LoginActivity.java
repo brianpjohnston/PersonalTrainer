@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(mPassword.getText().toString().equals(getApplicationContext().getString(R.string.correct_pw)))
                         {
                             Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.success_login), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, Client.class);
+                            Intent intent = new Intent(LoginActivity.this, ClientList.class);
                             LoginActivity.this.startActivity(intent);
                         }
                     else{
