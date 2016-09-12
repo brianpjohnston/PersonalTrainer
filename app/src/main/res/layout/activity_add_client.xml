@@ -44,14 +44,14 @@
                 android:layout_height="100dp"
                 android:id="@+id/client_Image"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/no_photo"/>
+                android:src="@mipmap/no_photo"/>
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/take_Image"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/camera"/>
+                android:src="@mipmap/camera"/>
 
             <EditText
                 android:id="@+id/edittext_Name"

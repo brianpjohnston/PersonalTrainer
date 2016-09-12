@@ -37,7 +37,7 @@
             android:layout_height="100dp"
             android:id="@+id/client_Image"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/no_photo" />
+            android:src="@mipmap/no_photo" />
 
         <Button
             android:layout_width="wrap_content"

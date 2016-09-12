@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -17,6 +18,13 @@ public class NewClient extends AppCompatActivity {
 
     private Button mbtnAddClient;
     private Button mbtnCancel;
+    private EditText mName;
+    private EditText mphoneNum;
+    private EditText mEmail;
+    private EditText mBillName;
+    private EditText mBilladdress;
+    private EditText mCreditNum;
+    private EditText mccDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +33,33 @@ public class NewClient extends AppCompatActivity {
 
         mbtnAddClient = (Button) findViewById(R.id.submit_client);
         mbtnCancel = (Button) findViewById(R.id.cancel_client);
+        mName = (EditText) findViewById(R.id.edittext_Name);
+        mphoneNum = (EditText) findViewById(R.id.edittext_Phone);
+        mEmail = (EditText) findViewById(R.id.edittext_Email_Address);
+        mBilladdress = (EditText) findViewById(R.id.edittext_BillingAddress);
+        mBillName = (EditText) findViewById(R.id.edittext_Cardholder);
+        mCreditNum = (EditText) findViewById(R.id.edittext_CardNumber);
+        mccDate = (EditText) findViewById(R.id.edittext_CardExp);
+
 
         mbtnAddClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //// TODO: 9/5/2016 add client 
+                Client client = new Client();
+                client.setmName(mName.toString());
+                client.setMphoneNum(mphoneNum.toString());
+                client.setEmail(mEmail.toString());
+                client.setBillName(mBillName.toString());
+                client.setBilladdress(mBilladdress.toString());
+                client.setCreditNum(mCreditNum.toString());
+                client.setMccDate(mccDate.toString());
+                ClientList.addClient(client);
+                ClientList.adapter.notifyDataSetChanged();
+
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.clientAdd), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(NewClient.this, ClientList.class);
                 NewClient.this.startActivity(intent);
+
             }
         });
         mbtnCancel.setOnClickListener(new View.OnClickListener() {

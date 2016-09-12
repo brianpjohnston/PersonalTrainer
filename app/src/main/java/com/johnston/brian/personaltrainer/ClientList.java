@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,10 +24,10 @@ import java.util.ArrayList;
 public class ClientList extends AppCompatActivity {
     private Button mNewClient;
     private ListView mList;
+    public static  ArrayList list;
+    public static ArrayAdapter adapter;
 
     public ClientList() {
-
-
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ClientList extends AppCompatActivity {
         mNewClient.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View view) {
-                                              //// TODO: 9/5/2016 add client
+
                                               Intent intent = new Intent(ClientList.this, NewClient.class);
                                               ClientList.this.startActivity(intent);
                                           }
@@ -56,32 +57,30 @@ public class ClientList extends AppCompatActivity {
 
                                       }
         );
-
-
-        final ListView clientList = (ListView) findViewById(R.id.Client_list);
-        final ArrayList<Object> list = new ArrayList<>();
-        for (int i = 1; i < 50; i++) {
-            Client client = new Client();
-            client.setmName("Client " + i);
-            list.add(client.getmName());
-        }
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        clientList.setAdapter(adapter);
-
-
+        viewAll();
 
 
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    protected void onResume(){
+        super.onResume();
+        adapter.notifyDataSetChanged();
+        viewAll();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id ==R.id.logoff);{
+        if (id == R.id.logoff) ;
+        {
             super.onOptionsItemSelected(item);
             FragmentManager manager = getFragmentManager();
             DialogFragment dialog = new DialogFragment();
@@ -93,9 +92,39 @@ public class ClientList extends AppCompatActivity {
         }
     }
 
+    public void viewAll() {
+        mList = (ListView) findViewById(R.id.Client_list);
+        list = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            Client client = new Client();
+            client.setmName("Client " + i);
+            list.add(client.getmName());
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        mList.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
 
-            }
+
+    }}
+
+
+
+
+    public static void addClient(Client c) {
+       list.add(c.getName());
+        adapter.notifyDataSetChanged();
+
+
+    }
+
+}
+
+
+
+
+
+
 
 
 
