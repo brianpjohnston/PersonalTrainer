@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by brian on 9/5/2016.
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 public class Sessions extends AppCompatActivity {
     private Button mpurchase;
     private ListView mSessionList;
+    public static ArrayList list;
+    public static ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +50,12 @@ public class Sessions extends AppCompatActivity {
         });
         final ListView sessionList = (ListView) findViewById(R.id.sessionList);
         final ArrayList<Object> list = new ArrayList<Object>();
-        for (int i = 1; i < 50; i++) {
+        for (int i = 1; i < 4; i++) {
             Session session = new Session();
-            session.setSessionName("Session " + i);
+            session.setSessionName("Session" + i);
             list.add(session.getSessionName());
         }
+
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         sessionList.setAdapter(adapter);
 

@@ -27,14 +27,15 @@ public class Purchase extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //// TODO: 9/7/2016
-                Intent intent = new Intent(Purchase.this, ClientList.class);
-                Purchase.this.startActivity(intent);
+                finish();
             }
         });
         mpurchase = (Button) findViewById(R.id.submit_payment);
         mpurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 //// TODO: 9/5/2016 add sessions to clients
                 Intent intent = new Intent(Purchase.this, Reciept.class);
                 Purchase.this.startActivity(intent);
