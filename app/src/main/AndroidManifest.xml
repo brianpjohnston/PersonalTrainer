@@ -19,7 +19,8 @@
             android:name=".NewClient">
         </activity>
         <activity
-            android:name=".Sessions">
+            android:name=".Sessions"
+            >
         </activity>
         <activity
             android:name=".Purchase">

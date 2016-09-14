@@ -27,6 +27,9 @@ public class ClientList extends AppCompatActivity {
     public static  ArrayList list;
     public static ArrayAdapter adapter;
 
+
+
+
     public ClientList() {
     }
 
@@ -36,6 +39,7 @@ public class ClientList extends AppCompatActivity {
         setContentView(R.layout.activity_clientlist);
         mNewClient = (Button) findViewById(R.id.button_add_client);
         mList = (ListView) findViewById(R.id.Client_list);
+
 
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,6 +53,8 @@ public class ClientList extends AppCompatActivity {
         mNewClient.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View view) {
+                                              //list.add("test");
+                                              //adapter.notifyDataSetChanged();
 
                                               Intent intent = new Intent(ClientList.this, NewClient.class);
                                               ClientList.this.startActivity(intent);
@@ -60,13 +66,23 @@ public class ClientList extends AppCompatActivity {
         viewAll();
 
 
+
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        adapter.notifyDataSetChanged();
-        viewAll();
+        UpdateUi();
+      //  viewAll();
     }
 
 
@@ -92,17 +108,19 @@ public class ClientList extends AppCompatActivity {
         }
     }
 
+    public void UpdateUi(){
+        adapter.notifyDataSetChanged();
+    }
+
     public void viewAll() {
         mList = (ListView) findViewById(R.id.Client_list);
-        list = new ArrayList<>();
-        for (int i = 1; i < 5; i++) {
-            Client client = new Client();
-            client.setmName("Client " + i);
-            list.add(client.getmName());
+        list = new ArrayList();
+
+
 
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         mList.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+
 
 
 
@@ -111,14 +129,9 @@ public class ClientList extends AppCompatActivity {
 
 
 
-    public static void addClient(Client c) {
-       list.add(c.getName());
-        adapter.notifyDataSetChanged();
 
 
-    }
 
-}
 
 
 

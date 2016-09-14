@@ -29,8 +29,7 @@ public class SessionComplete extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //// TODO: 9/7/2016
-                Intent intent = new Intent(SessionComplete.this, ClientList.class);
-                SessionComplete.this.startActivity(intent);
+                finish();
             }
         });
         mComplete = (Button) findViewById(R.id.complete_session);
@@ -51,8 +50,7 @@ public class SessionComplete extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //// TODO: 9/7/2016
-                Intent intent = new Intent(SessionComplete.this, ClientList.class);
-                SessionComplete.this.startActivity(intent);
+                finish();
 
             }
         });

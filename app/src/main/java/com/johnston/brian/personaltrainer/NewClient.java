@@ -46,19 +46,22 @@ public class NewClient extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Client client = new Client();
-                client.setmName(mName.toString());
-                client.setMphoneNum(mphoneNum.toString());
-                client.setEmail(mEmail.toString());
-                client.setBillName(mBillName.toString());
-                client.setBilladdress(mBilladdress.toString());
-                client.setCreditNum(mCreditNum.toString());
-                client.setMccDate(mccDate.toString());
-                ClientList.adapter.add(client);
+                client.setmName(mName.getText().toString());
+                client.setMphoneNum(mphoneNum.getText().toString());
+                client.setEmail(mEmail.getText().toString());
+                client.setBillName(mBillName.getText().toString());
+                client.setBilladdress(mBilladdress.getText().toString());
+                client.setCreditNum(mCreditNum.getText().toString());
+                client.setMccDate(mccDate.getText().toString());
+                ClientList.list.add(client.getName().toString());
                 ClientList.adapter.notifyDataSetChanged();
 
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.clientAdd), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(NewClient.this, ClientList.class);
-                NewClient.this.startActivity(intent);
+
+
+
+
+                finish();
 
             }
         });
@@ -66,8 +69,7 @@ public class NewClient extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.canceled), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(NewClient.this, ClientList.class);
-                NewClient.this.startActivity(intent);
+                finish();
             }
         });
 
