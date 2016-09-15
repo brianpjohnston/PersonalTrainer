@@ -20,7 +20,8 @@ public class ClientBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + ClientTable.NAME + "(" + " _id integer primary key autoincrement,"
+        db.execSQL("create table " + ClientTable.NAME + "("
+                + " _id integer primary key autoincrement,"
                 + ClientTable.Cols.UUID + ", "
                 + ClientTable.Cols.CLIENTNAME + ", "
                 + ClientTable.Cols.PHONE + ", "

@@ -1,8 +1,14 @@
 package com.johnston.brian.personaltrainer;
 
+import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
+import com.johnston.brian.personaltrainer.database.ClientDbSchema;
 import android.app.FragmentManager;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,8 +20,11 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.johnston.brian.personaltrainer.database.ClientCursorWrapper;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -26,6 +35,8 @@ public class ClientList extends AppCompatActivity {
     private ListView mList;
     public static  ArrayList list;
     public static ArrayAdapter adapter;
+    private SQLiteDatabase mDatabase;
+    private Context mContext;
 
 
 
@@ -39,6 +50,9 @@ public class ClientList extends AppCompatActivity {
         setContentView(R.layout.activity_clientlist);
         mNewClient = (Button) findViewById(R.id.button_add_client);
         mList = (ListView) findViewById(R.id.Client_list);
+        //mcontext = context;
+        // mDatabase = new ClientBaseHelper(mcontext)
+        //    .getWritableDatabase();
 
 
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,8 +67,7 @@ public class ClientList extends AppCompatActivity {
         mNewClient.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View view) {
-                                              //list.add("test");
-                                              //adapter.notifyDataSetChanged();
+
 
                                               Intent intent = new Intent(ClientList.this, NewClient.class);
                                               ClientList.this.startActivity(intent);
@@ -122,9 +135,80 @@ public class ClientList extends AppCompatActivity {
         mList.setAdapter(adapter);
 
 
+    }
 
 
-    }}
+    private ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                ClientDbSchema.ClientTable.NAME,
+                null, //Columns - null selects all columns
+                whereClause,
+                whereArgs,
+                null, //group by
+                null, //having
+                null //order by
+        );
+
+
+        return new ClientCursorWrapper(cursor);
+    }
+
+
+    public List<Client> getClients() {
+        List<Client> clients = new ArrayList<>();
+
+        ClientCursorWrapper cursor = queryClients(null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            clients.add(cursor.getClient());
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return clients;
+    }
+
+    public Client getClient(UUID id) {
+        ClientCursorWrapper cursor = queryClients(
+                ClientDbSchema.ClientTable.Cols.UUID + " =?",
+                new String[]{id.toString()}
+
+        );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getClient();
+        } finally {
+            {
+                cursor.close();
+            }
+        }
+    }
+
+
+    private static ContentValues getContentValues(Client client) {
+        ContentValues values = new ContentValues();
+        values.put(ClientDbSchema.ClientTable.Cols.UUID, client.getmID().toString());
+        values.put(ClientDbSchema.ClientTable.Cols.CLIENTNAME, client.getmName());
+        values.put(ClientDbSchema.ClientTable.Cols.EMAIL, client.getEmail());
+        values.put(ClientDbSchema.ClientTable.Cols.PHONE, client.getMphoneNum());
+        values.put(ClientDbSchema.ClientTable.Cols.BILLNAME, client.getBillName());
+        values.put(ClientDbSchema.ClientTable.Cols.CCNUM, client.getCreditNum());
+        values.put(ClientDbSchema.ClientTable.Cols.EXPIRE, client.getMccDate());
+        values.put(ClientDbSchema.ClientTable.Cols.ADDRESS, client.getBilladdress());
+
+        return values;
+    }
+
+
+    public void addClient(Client c) {
+        ContentValues values = getContentValues(c);
+        mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
+    }
+}
 
 
 

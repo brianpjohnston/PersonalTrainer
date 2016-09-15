@@ -27,7 +27,7 @@ public class ClientCursorWrapper extends CursorWrapper {
         String addressString = getString(getColumnIndex(ClientTable.Cols.ADDRESS));
 
 
-        Client client = new Client(); //        Client client = new Client(UUID.fromString(uuidString));
+        Client client = new Client(); //UUID.fromString(uuidString)
         client.setmName(nameString);
         client.setMphoneNum(phoneString);
         client.setEmail(emailString);
