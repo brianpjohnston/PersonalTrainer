@@ -1,13 +1,10 @@
 package com.johnston.brian.personaltrainer;
 
 import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
-import com.johnston.brian.personaltrainer.database.ClientDbSchema;
+
 import android.app.FragmentManager;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +17,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.johnston.brian.personaltrainer.database.ClientCursorWrapper;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -33,10 +27,12 @@ import java.util.UUID;
 public class ClientList extends AppCompatActivity {
     private Button mNewClient;
     private ListView mList;
+    public static ArrayList clients;
     public static  ArrayList list;
     public static ArrayAdapter adapter;
     private SQLiteDatabase mDatabase;
     private Context mContext;
+    private ClientBaseHelper db;
 
 
 
@@ -46,13 +42,14 @@ public class ClientList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientlist);
         mNewClient = (Button) findViewById(R.id.button_add_client);
         mList = (ListView) findViewById(R.id.Client_list);
-        //mcontext = context;
-        // mDatabase = new ClientBaseHelper(mcontext)
-        //    .getWritableDatabase();
+        ClientDataAccess.init(getApplicationContext());
+
 
 
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,8 +91,10 @@ public class ClientList extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        UpdateUi();
-      //  viewAll();
+
+        //UpdateUi();
+       //adapter.notifyDataSetChanged();
+       viewAll();
     }
 
 
@@ -122,18 +121,32 @@ public class ClientList extends AppCompatActivity {
     }
 
     public void UpdateUi(){
+
+
+
         adapter.notifyDataSetChanged();
+
+
     }
 
     public void viewAll() {
+        //list = new ArrayList();
         mList = (ListView) findViewById(R.id.Client_list);
-        list = new ArrayList();
+        ClientDataAccess client = new ClientDataAccess(getApplicationContext());
+
+        List<Client> clients = client.getClients();
+
+
+        if(adapter == null){
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, clients);
+            mList.setAdapter(adapter);
+        } else{
+            adapter.notifyDataSetChanged();
+        }
 
 
 
 
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        mList.setAdapter(adapter);
 
 
     }

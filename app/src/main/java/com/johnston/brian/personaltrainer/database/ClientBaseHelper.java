@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.johnston.brian.personaltrainer.database.ClientDbSchema.ClientTable;
+import com.johnston.brian.personaltrainer.database.ClientDbSchema.SessionTable;
 
 /**
  * Created by brian on 9/14/2016.
@@ -30,6 +31,13 @@ public class ClientBaseHelper extends SQLiteOpenHelper {
                 + ClientTable.Cols.CCNUM + ", "
                 + ClientTable.Cols.EXPIRE + ", "
                 + ClientTable.Cols.ADDRESS + ")"
+        );
+
+        db.execSQL("create table " + SessionTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                SessionTable.Cols.UUID + ", " +
+                SessionTable.Cols.SESSIONNAME +
+                SessionTable.Cols.CLIENTUUID+ ")"
         );
 
 

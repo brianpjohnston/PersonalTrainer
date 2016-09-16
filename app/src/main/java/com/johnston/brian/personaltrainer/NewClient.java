@@ -53,12 +53,14 @@ public class NewClient extends AppCompatActivity {
                 client.setBilladdress(mBilladdress.getText().toString());
                 client.setCreditNum(mCreditNum.getText().toString());
                 client.setMccDate(mccDate.getText().toString());
-                ClientList.list.add(client.getName().toString());
+                ClientDataAccess.addClient(client);
+
                 ClientList.adapter.notifyDataSetChanged();
 
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.clientAdd), Toast.LENGTH_SHORT).show();
 
-
+               //Intent intent = new Intent(NewClient.this, ClientList.class);
+              // NewClient.this.startActivity(intent);
 
 
                 finish();

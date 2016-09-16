@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ListView;
 
 import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
 import com.johnston.brian.personaltrainer.database.ClientCursorWrapper;
@@ -16,42 +17,49 @@ import java.util.UUID;
 /**
  * Created by tech140 on 9/16/2016.
  */
-public class ClientLab {
-    private static ClientLab sClientLab;
+public class ClientDataAccess {
+   // private static ClientDataAccess sClientDataAccess;
 
-    private Context mContext;
-    private SQLiteDatabase mDatabase;
+    private static Context mContext;
+    private static  SQLiteDatabase mDatabase;
 
-    public static ClientLab get(Context context){
-        if(sClientLab == null){
-            sClientLab = new ClientLab(context);
-        }
-        return sClientLab;
+
+
+    public static void init(Context context){
+        mContext = context;
+        mDatabase = new ClientBaseHelper(mContext).getWritableDatabase();
 
 
     }
 
-    private ClientLab(Context context) {
+    public ClientDataAccess(Context context) {
         mContext = context.getApplicationContext(); //
         mDatabase = new ClientBaseHelper(mContext).getWritableDatabase();
+
     }
 
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
 
-        ClientCursorWrapper cursor = queryClients(null, null);
+        ClientCursorWrapper cursor = queryClients(ClientDbSchema.ClientTable.Cols.CLIENTNAME, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                clients.add(cursor.getClient());
+                cursor.moveToNext();
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            clients.add(cursor.getClient());
-            cursor.moveToNext();
-        }
-        cursor.close();
+            }
+        }finally{
+                cursor.close();
+            }
+
+
+
         return clients;
     }
 
 
-    private  ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
+    private static   ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 ClientDbSchema.ClientTable.NAME,
                 null, //Columns - null selects all columns
@@ -66,12 +74,10 @@ public class ClientLab {
         return new ClientCursorWrapper(cursor);
     }
 
-    public Client getClient(UUID id) {
+    public static Client getClient(UUID id) {
         ClientCursorWrapper cursor = queryClients(
                 ClientDbSchema.ClientTable.Cols.UUID + " =?",
-                new String[]{id.toString()}
-
-        );
+                new String[]{id.toString()});
 
         try {
             if (cursor.getCount() == 0) {
@@ -102,10 +108,11 @@ public class ClientLab {
     }
 
 
-    public void addClient(Client c) {
+    public static void addClient(Client c) {
         ContentValues values = getContentValues(c);
         mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
     }
+
 
 
 
