@@ -131,6 +131,7 @@ public class ClientList extends AppCompatActivity {
 
 
 
+
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         mList.setAdapter(adapter);
 
@@ -138,76 +139,12 @@ public class ClientList extends AppCompatActivity {
     }
 
 
-    private ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatabase.query(
-                ClientDbSchema.ClientTable.NAME,
-                null, //Columns - null selects all columns
-                whereClause,
-                whereArgs,
-                null, //group by
-                null, //having
-                null //order by
-        );
 
 
-        return new ClientCursorWrapper(cursor);
-    }
 
 
-    public List<Client> getClients() {
-        List<Client> clients = new ArrayList<>();
-
-        ClientCursorWrapper cursor = queryClients(null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            clients.add(cursor.getClient());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return clients;
-    }
-
-    public Client getClient(UUID id) {
-        ClientCursorWrapper cursor = queryClients(
-                ClientDbSchema.ClientTable.Cols.UUID + " =?",
-                new String[]{id.toString()}
-
-        );
-
-        try {
-            if (cursor.getCount() == 0) {
-                return null;
-            }
-            cursor.moveToFirst();
-            return cursor.getClient();
-        } finally {
-            {
-                cursor.close();
-            }
-        }
-    }
 
 
-    private static ContentValues getContentValues(Client client) {
-        ContentValues values = new ContentValues();
-        values.put(ClientDbSchema.ClientTable.Cols.UUID, client.getmID().toString());
-        values.put(ClientDbSchema.ClientTable.Cols.CLIENTNAME, client.getmName());
-        values.put(ClientDbSchema.ClientTable.Cols.EMAIL, client.getEmail());
-        values.put(ClientDbSchema.ClientTable.Cols.PHONE, client.getMphoneNum());
-        values.put(ClientDbSchema.ClientTable.Cols.BILLNAME, client.getBillName());
-        values.put(ClientDbSchema.ClientTable.Cols.CCNUM, client.getCreditNum());
-        values.put(ClientDbSchema.ClientTable.Cols.EXPIRE, client.getMccDate());
-        values.put(ClientDbSchema.ClientTable.Cols.ADDRESS, client.getBilladdress());
-
-        return values;
-    }
-
-
-    public void addClient(Client c) {
-        ContentValues values = getContentValues(c);
-        mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
-    }
 }
 
 

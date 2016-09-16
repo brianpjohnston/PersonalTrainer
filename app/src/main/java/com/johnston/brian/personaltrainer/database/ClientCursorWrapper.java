@@ -6,6 +6,7 @@ import android.database.CursorWrapper;
 import com.johnston.brian.personaltrainer.Client;
 import com.johnston.brian.personaltrainer.database.ClientDbSchema.ClientTable;
 
+
 import java.util.UUID;
 
 /**
@@ -27,7 +28,7 @@ public class ClientCursorWrapper extends CursorWrapper {
         String addressString = getString(getColumnIndex(ClientTable.Cols.ADDRESS));
 
 
-        Client client = new Client(); //UUID.fromString(uuidString)
+        Client client = new Client(UUID.fromString(uuidString));
         client.setmName(nameString);
         client.setMphoneNum(phoneString);
         client.setEmail(emailString);

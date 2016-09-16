@@ -18,4 +18,15 @@ public class ClientDbSchema {
             public static final String ADDRESS = "address";
         }
     }
+    public static final class SessionDateTable {
+        public static final String NAME = "session";
+
+        public static final class Cols {
+            public static final String UUID = "uuid";
+            public static final String SESSIONTITLE = "session name";
+            public static final String CLIENTUUID = "clientID";
+        }
+    }
+
+
 }

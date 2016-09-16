@@ -21,6 +21,9 @@ public class Client {
        mID = UUID.randomUUID();
 
     }
+    public  Client(UUID id){
+        mID = id;
+    }
 
     public String getmName() {
         return mName;

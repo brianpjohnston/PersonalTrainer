@@ -8,6 +8,7 @@ import java.util.UUID;
 public class Session {
     private UUID sessionid;
     private String sessionName;
+    private UUID clientID;
 
     public Session() {
         sessionid = UUID.randomUUID();
@@ -23,5 +24,13 @@ public class Session {
 
     public UUID getSessionid() {
         return sessionid;
+    }
+
+    public UUID getClientID() {
+        return clientID;
+    }
+
+    public void setClientID(UUID clientID) {
+        this.clientID = clientID;
     }
 }
