@@ -25,6 +25,9 @@ public class Sessions extends AppCompatActivity {
     public ListView mSessionList;
     //public static ArrayList list;
     public static ArrayAdapter adapter;
+    private static final String EXTRA_CLIENT_ID =
+            "com.johnston.brian.personaltrainer.client_id";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,23 @@ public class Sessions extends AppCompatActivity {
 
 
 
+    }
+
+    public void onPause() {
+        super.onPause();
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //UpdateUi();
+        //adapter.notifyDataSetChanged();
+        viewAll();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -87,7 +107,8 @@ public class Sessions extends AppCompatActivity {
             adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessions);
             mSessionList.setAdapter(adapter);
         } else {
-            mSessionList.notify();
+            mSessionList.notify(); //why is notifydataset changed not showing?
+            //// TODO: 9/17/2016  fix this
         }
     }
 

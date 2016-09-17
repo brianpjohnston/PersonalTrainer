@@ -62,7 +62,7 @@ public class ClientDataAccess {
     private static   ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 ClientDbSchema.ClientTable.NAME,
-                new String[]{"ClientDbSchema.ClientTable.Cols.CLIENTNAME"}, //Columns - null selects all columns
+                null, //new String[]{"ClientDbSchema.ClientTable.Cols.CLIENTNAME"}, //Columns - null selects all columns
                 whereClause,
                 whereArgs,
                 null, //group by
