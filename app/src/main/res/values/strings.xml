@@ -34,4 +34,5 @@
     <string name="canceled">Action Canceled</string>
     <string name="emailSent">Email Sent!</string>
     <string name="printing">Sent to Printer</string>
+    <string name="sessiontype">Session type i.e Yoga</string>
 </resources>

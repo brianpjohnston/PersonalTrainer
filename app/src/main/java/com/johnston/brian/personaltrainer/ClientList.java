@@ -27,12 +27,12 @@ import java.util.List;
 public class ClientList extends AppCompatActivity {
     private Button mNewClient;
     private ListView mList;
-    public static ArrayList clients;
-    public static  ArrayList list;
+    // public static ArrayList clients;
+    // public static  ArrayList list;
     public static ArrayAdapter adapter;
-    private SQLiteDatabase mDatabase;
-    private Context mContext;
-    private ClientBaseHelper db;
+    // private SQLiteDatabase mDatabase;
+    // private Context mContext;
+    // private ClientBaseHelper db;
 
 
 

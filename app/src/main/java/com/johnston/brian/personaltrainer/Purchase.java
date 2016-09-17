@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.UUID;
 
 /**
  * Created by brian on 9/5/2016.
@@ -16,12 +19,14 @@ import android.widget.Button;
 public class Purchase extends AppCompatActivity {
     private Button mpurchase;
     private Button mCancel;
+    private EditText mSessionName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_session);
+        mSessionName = (EditText) findViewById(R.id.EditText_sessionName);
         mCancel = (Button) findViewById(R.id.cancel_payment);
         mCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +39,12 @@ public class Purchase extends AppCompatActivity {
         mpurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Session session = new Session();
+                session.setSessionName(mSessionName.getText().toString());
+                session.setClientID(UUID.randomUUID());
+
+                SessionDataAccess.dbtransNewSession(session);
+                Sessions.adapter.notifyDataSetChanged();
 
 
                 //// TODO: 9/5/2016 add sessions to clients

@@ -21,8 +21,9 @@ import java.util.List;
  */
 public class Sessions extends AppCompatActivity {
     private Button mpurchase;
-    private ListView mSessionList;
-    public static ArrayList list;
+    private ListView clients;
+    public ListView mSessionList;
+    //public static ArrayList list;
     public static ArrayAdapter adapter;
 
     @Override
@@ -48,16 +49,7 @@ public class Sessions extends AppCompatActivity {
             }
 
         });
-        final ListView sessionList = (ListView) findViewById(R.id.sessionList);
-        final ArrayList<Object> list = new ArrayList<Object>();
-        for (int i = 1; i < 4; i++) {
-            Session session = new Session();
-            session.setSessionName("Session" + i);
-            list.add(session.getSessionName());
-        }
-
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        sessionList.setAdapter(adapter);
+        viewAll();
 
 
 
@@ -82,6 +74,21 @@ public class Sessions extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    public void viewAll() {
+
+        mSessionList = (ListView) findViewById(R.id.sessionList);
+        SessionDataAccess session = new SessionDataAccess((getApplicationContext()));
+
+        List<Session> sessions = session.getSessions();
+
+        if (adapter == null) {
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessions);
+            mSessionList.setAdapter(adapter);
+        } else {
+            mSessionList.notify();
+        }
     }
 
     }
