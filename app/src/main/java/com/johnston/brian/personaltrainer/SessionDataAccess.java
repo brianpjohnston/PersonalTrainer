@@ -102,7 +102,7 @@ public class SessionDataAccess {
 
     public static void addSession(Session s) {
         ContentValues values = getContentValues(s);
-        mDatabase.insert(ClientDbSchema.SessionTable.NAME, null, values);
+        mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
     }
 
     public static void dbtransNewSession(Session s) {

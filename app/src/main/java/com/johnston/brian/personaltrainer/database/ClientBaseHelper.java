@@ -37,7 +37,7 @@ public class ClientBaseHelper extends SQLiteOpenHelper {
                 " _id integer primary key autoincrement, " +
                 SessionTable.Cols.UUID + ", " +
                 SessionTable.Cols.SESSIONNAME +
-                SessionTable.Cols.CLIENTUUID+ ")"
+                SessionTable.Cols.CLIENTUUID + ")"
         );
 
 

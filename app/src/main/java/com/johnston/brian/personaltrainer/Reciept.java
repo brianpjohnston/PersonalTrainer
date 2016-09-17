@@ -43,7 +43,7 @@ public class Reciept extends AppCompatActivity {
             public void onClick(View view) {
                 //// TODO: 9/5/2016  implement email
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.emailSent), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Reciept.this, ClientList.class);
+                Intent intent = new Intent(Reciept.this, Sessions.class);
                 Reciept.this.startActivity(intent);
             }
 
