@@ -53,7 +53,9 @@ public class NewClient extends AppCompatActivity {
                 client.setBilladdress(mBilladdress.getText().toString());
                 client.setCreditNum(mCreditNum.getText().toString());
                 client.setMccDate(mccDate.getText().toString());
-                ClientDataAccess.addClient(client);
+
+
+                ClientDataAccess.dbtransNewClient(client);
 
                 ClientList.adapter.notifyDataSetChanged();
 

@@ -41,7 +41,7 @@ public class ClientDataAccess {
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
 
-        ClientCursorWrapper cursor = queryClients(ClientDbSchema.ClientTable.Cols.CLIENTNAME, null);
+        ClientCursorWrapper cursor = queryClients(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -62,7 +62,7 @@ public class ClientDataAccess {
     private static   ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 ClientDbSchema.ClientTable.NAME,
-                null, //Columns - null selects all columns
+                new String[]{"ClientDbSchema.ClientTable.Cols.CLIENTNAME"}, //Columns - null selects all columns
                 whereClause,
                 whereArgs,
                 null, //group by
@@ -111,6 +111,19 @@ public class ClientDataAccess {
     public static void addClient(Client c) {
         ContentValues values = getContentValues(c);
         mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
+    }
+
+    public static void dbtransNewClient(Client c) {
+        mDatabase.beginTransaction();
+        try {
+            addClient(c);
+            mDatabase.setTransactionSuccessful();
+        } catch (Exception e) {
+            //todo exception
+
+        } finally {
+            mDatabase.endTransaction();
+        }
     }
 
 

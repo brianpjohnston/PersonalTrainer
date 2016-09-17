@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.johnston.brian.personaltrainer.Client;
+import com.johnston.brian.personaltrainer.Session;
 import com.johnston.brian.personaltrainer.database.ClientDbSchema.ClientTable;
 
 
@@ -38,6 +39,20 @@ public class ClientCursorWrapper extends CursorWrapper {
         client.setBilladdress(addressString);
 
         return client;
+    }
+
+    public Session getSession() {
+        String uuidString = getString((getColumnIndex(ClientDbSchema.SessionTable.Cols.UUID)));
+        String clientid = getString(getColumnIndex(ClientDbSchema.SessionTable.Cols.CLIENTUUID));
+        String sessionname = getString(getColumnIndex(ClientDbSchema.SessionTable.Cols.SESSIONNAME));
+
+
+        Session session = new Session(UUID.fromString(uuidString));
+        session.setSessionName(sessionname);
+        session.setSessionName(clientid);
+
+
+        return session;
     }
 
 }

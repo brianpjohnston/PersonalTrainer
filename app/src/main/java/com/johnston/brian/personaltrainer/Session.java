@@ -14,6 +14,14 @@ public class Session {
         sessionid = UUID.randomUUID();
     }
 
+    public Session(UUID id) {
+        sessionid = id;
+    }
+
+    public void setSessionid(UUID sessionid) {
+        this.sessionid = sessionid;
+    }
+
     public String getSessionName() {
         return sessionName;
     }
