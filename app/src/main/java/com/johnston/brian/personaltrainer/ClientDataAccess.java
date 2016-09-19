@@ -114,6 +114,8 @@ public class ClientDataAccess {
     public static void addClient(Client c) {
         ContentValues values = getContentValues(c);
         mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
+
+
     }
 
     public static void dbtransNewClient(Client c) {

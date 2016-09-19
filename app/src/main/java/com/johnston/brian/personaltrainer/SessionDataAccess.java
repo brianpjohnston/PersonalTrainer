@@ -93,7 +93,8 @@ public class SessionDataAccess {
         ContentValues values = new ContentValues();
         values.put(ClientDbSchema.SessionTable.Cols.UUID, s.getSessionid().toString());
         values.put(ClientDbSchema.SessionTable.Cols.CLIENTUUID, s.getClientID().toString());
-        values.put(ClientDbSchema.SessionTable.Cols.SESSIONNAME, s.getSessionName().toString());
+        values.put(ClientDbSchema.SessionTable.Cols.SESSIONNAME, s.getSessionName());
+        values.put(ClientDbSchema.SessionTable.Cols.ISCOMPLETE, s.getisComplete() );
 
 
         return values;
@@ -102,7 +103,7 @@ public class SessionDataAccess {
 
     public static void addSession(Session s) {
         ContentValues values = getContentValues(s);
-        mDatabase.insert(ClientDbSchema.ClientTable.NAME, null, values);
+        mDatabase.insert(ClientDbSchema.SessionTable.NAME, null, values);
     }
 
     public static void dbtransNewSession(Session s) {

@@ -24,7 +24,7 @@ public class ClientDbSchema {
 
         public static final class Cols {
             public static final String UUID = "uuid";
-            public static final String SESSIONNAME = "session name";
+            public static final String SESSIONNAME = "sName";
             public static final String CLIENTUUID = "clientID";
             public static final String ISCOMPLETE = "complete";
         }

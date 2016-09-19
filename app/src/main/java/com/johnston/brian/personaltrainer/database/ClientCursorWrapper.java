@@ -50,7 +50,7 @@ public class ClientCursorWrapper extends CursorWrapper {
 
         Session session = new Session(UUID.fromString(uuidString));
         session.setSessionName(sessionname);
-        session.setSessionName(clientid);
+        session.setClientID(UUID.fromString(clientid));
         session.setComplete(Boolean.parseBoolean(isComplete));
 
 

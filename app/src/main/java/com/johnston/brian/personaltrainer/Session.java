@@ -43,7 +43,7 @@ public class Session {
         this.clientID = clientID;
     }
 
-    public boolean isComplete() {
+    public boolean getisComplete() {
         return isComplete;
     }
 
