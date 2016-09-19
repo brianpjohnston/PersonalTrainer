@@ -1,5 +1,8 @@
 package com.johnston.brian.personaltrainer;
 
+import android.support.v7.app.AppCompatActivity;
+
+
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,8 +67,8 @@ public class NewClient extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.clientAdd), Toast.LENGTH_SHORT).show();
 
-               //Intent intent = new Intent(NewClient.this, ClientList.class);
-              // NewClient.this.startActivity(intent);
+                //Intent intent = new Intent(NewClient.this, ClientList.class);
+                // NewClient.this.startActivity(intent);
 
 
                 finish();
@@ -104,13 +107,3 @@ public class NewClient extends AppCompatActivity {
 
     }
 }
-    
-
-
-
-
-
-
-
-
-
