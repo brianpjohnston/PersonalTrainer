@@ -45,11 +45,13 @@ public class ClientCursorWrapper extends CursorWrapper {
         String uuidString = getString((getColumnIndex(ClientDbSchema.SessionTable.Cols.UUID)));
         String clientid = getString(getColumnIndex(ClientDbSchema.SessionTable.Cols.CLIENTUUID));
         String sessionname = getString(getColumnIndex(ClientDbSchema.SessionTable.Cols.SESSIONNAME));
+        String isComplete = getString(getColumnIndex(ClientDbSchema.SessionTable.Cols.ISCOMPLETE));
 
 
         Session session = new Session(UUID.fromString(uuidString));
         session.setSessionName(sessionname);
         session.setSessionName(clientid);
+        session.setComplete(Boolean.parseBoolean(isComplete));
 
 
         return session;

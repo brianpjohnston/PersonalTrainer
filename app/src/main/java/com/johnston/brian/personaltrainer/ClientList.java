@@ -1,6 +1,7 @@
 package com.johnston.brian.personaltrainer;
 
 import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
+import com.johnston.brian.personaltrainer.database.ClientDbSchema;
 
 import android.app.FragmentManager;
 import android.content.Context;
@@ -35,8 +36,6 @@ public class ClientList extends AppCompatActivity {
     // private ClientBaseHelper db;
 
 
-
-
     public ClientList() {
     }
 
@@ -51,11 +50,11 @@ public class ClientList extends AppCompatActivity {
         ClientDataAccess.init(getApplicationContext());
 
 
-
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ClientList.this, Sessions.class);
+                //intent.putExtra()
                 ClientList.this.startActivity(intent);
             }
         });
@@ -76,11 +75,10 @@ public class ClientList extends AppCompatActivity {
         viewAll();
 
 
-
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
 
@@ -89,12 +87,12 @@ public class ClientList extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         //UpdateUi();
-       //adapter.notifyDataSetChanged();
-       viewAll();
+        //adapter.notifyDataSetChanged();
+        viewAll();
     }
 
 
@@ -120,8 +118,7 @@ public class ClientList extends AppCompatActivity {
         }
     }
 
-    public void UpdateUi(){
-
+    public void UpdateUi() {
 
 
         adapter.notifyDataSetChanged();
@@ -135,30 +132,24 @@ public class ClientList extends AppCompatActivity {
         ClientDataAccess client = new ClientDataAccess(getApplicationContext());
 
         List<Client> clients = client.getClients();
+        List<String> clientName = new ArrayList<String>();
+        for (int i = 0; i < clients.size(); i++) {
+            Client c = clients.get(i);
+            clientName.add(c.getmName());
+        }
 
 
-        if(adapter == null){
-            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, clients);
+        if (adapter == null) {
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, clientName);
             mList.setAdapter(adapter);
-        } else{
+        } else {
             adapter.notifyDataSetChanged();
         }
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
 }
+
 
 
 

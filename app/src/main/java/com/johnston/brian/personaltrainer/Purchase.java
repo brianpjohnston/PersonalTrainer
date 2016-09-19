@@ -42,6 +42,7 @@ public class Purchase extends AppCompatActivity {
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
                 session.setClientID(UUID.randomUUID());
+                session.setComplete(false);
 
                 SessionDataAccess.addSession(session);
                 Sessions.adapter.notifyDataSetChanged();

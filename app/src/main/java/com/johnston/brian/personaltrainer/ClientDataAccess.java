@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
 import com.johnston.brian.personaltrainer.database.ClientCursorWrapper;
 import com.johnston.brian.personaltrainer.database.ClientDbSchema;
+import com.johnston.brian.personaltrainer.database.ClientDbSchema.ClientTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,14 @@ public class ClientDataAccess {
     }
 
     public ClientDataAccess(Context context) {
-        mContext = context.getApplicationContext(); //
+        mContext = context.getApplicationContext();
         mDatabase = new ClientBaseHelper(mContext).getWritableDatabase();
 
     }
 
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
+
 
         ClientCursorWrapper cursor = queryClients(null, null);
         try {
@@ -60,16 +62,17 @@ public class ClientDataAccess {
 
 
     private static   ClientCursorWrapper queryClients(String whereClause, String[] whereArgs) {
+
+
         Cursor cursor = mDatabase.query(
                 ClientDbSchema.ClientTable.NAME,
-                null, //new String[]{"ClientDbSchema.ClientTable.Cols.CLIENTNAME"}, //Columns - null selects all columns
+                null, //Columns - null selects all columns
                 whereClause,
                 whereArgs,
                 null, //group by
                 null, //having
                 null //order by
         );
-
 
         return new ClientCursorWrapper(cursor);
     }
@@ -126,6 +129,11 @@ public class ClientDataAccess {
         }
     }
 
+    public static String getName(Client c) {
+        String clientName = c.getName();
+        return clientName;
+
+    }
 
 
 

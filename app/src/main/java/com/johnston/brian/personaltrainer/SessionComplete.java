@@ -40,6 +40,7 @@ public class SessionComplete extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(checkComplete.isChecked()){
                     mComplete.setEnabled(true);
+                    //// TODO: 9/17/2016 set session complete to false 
                 }
                 else {
                     mComplete.setEnabled(false);
