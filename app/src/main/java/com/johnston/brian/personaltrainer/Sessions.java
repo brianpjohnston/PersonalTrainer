@@ -59,9 +59,7 @@ public class Sessions extends AppCompatActivity {
 
     }
 
-    public void onPause() {
-        super.onPause();
-    }
+
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -104,15 +102,9 @@ public class Sessions extends AppCompatActivity {
 
         final List<Session> sessions = session.getSessions();
 
-        List<String> sessionName = new ArrayList<String>();
-        for (int i = 0; i < sessions.size(); i++) {
-            Session s = sessions.get(i);
-            // if(s.getClientID().equals(clientID))
-            sessionName.add(s.getSessionName());
-        }
 
         if (adapter == null) {
-            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessionName);
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
             mSessionList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 

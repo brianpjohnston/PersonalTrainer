@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -23,6 +24,8 @@ public class Purchase extends AppCompatActivity {
     private static final String EXTRA_CLIENT_ID =
             "com.johnston.brian.personaltrainer.client_id";
     private static UUID clientID;
+    private Button mSendMail;
+    private Button mPrint;
 
 
 
@@ -30,6 +33,7 @@ public class Purchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_session);
+
 
         clientID = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_CLIENT_ID);
@@ -42,10 +46,13 @@ public class Purchase extends AppCompatActivity {
                 finish();
             }
         });
-        mpurchase = (Button) findViewById(R.id.submit_payment);
-        mpurchase.setOnClickListener(new View.OnClickListener() {
+
+        mPrint = (Button) findViewById(R.id.button_print);
+        mPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //// TODO: 9/5/2016  implement print
+
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
                 session.setClientID(UUID.randomUUID());
@@ -53,12 +60,32 @@ public class Purchase extends AppCompatActivity {
 
                 SessionDataAccess.addSession(session);
                 Sessions.adapter.notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.printing), Toast.LENGTH_SHORT).show();
 
+                finish();
 
-                //// TODO: 9/5/2016 add sessions to clients
-                Intent intent = new Intent(Purchase.this, Reciept.class);
-                Purchase.this.startActivity(intent);
             }
+
+        });
+
+        mSendMail = (Button) findViewById(R.id.button_email);
+        mSendMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //// TODO: 9/5/2016  implement email
+
+                Session session = new Session();
+                session.setSessionName(mSessionName.getText().toString());
+                session.setClientID(UUID.randomUUID());
+                session.setComplete(false);
+
+                SessionDataAccess.dbtransNewSession(session);
+                Sessions.adapter.notifyDataSetChanged();
+
+                Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.emailSent), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
         });
 
 
