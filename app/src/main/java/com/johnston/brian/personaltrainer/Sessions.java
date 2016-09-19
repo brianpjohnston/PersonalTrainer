@@ -103,8 +103,14 @@ public class Sessions extends AppCompatActivity {
 
         List<Session> sessions = session.getSessions();
 
+        List<String> sessionName = new ArrayList<String>();
+        for (int i = 0; i < sessions.size(); i++) {
+            Session s = sessions.get(i);
+            sessionName.add(s.getSessionName());
+        }
+
         if (adapter == null) {
-            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessions);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessionName);
             mSessionList.setAdapter(adapter);
         } else {
             // mSessionList.notify(); //why is notifydataset changed not showing?
