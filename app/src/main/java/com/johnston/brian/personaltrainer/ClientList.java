@@ -30,7 +30,7 @@ public class ClientList extends AppCompatActivity {
     private ListView mList;
     // public static ArrayList clients;
     // public static  ArrayList list;
-    public static ArrayAdapter adapter;
+    public static ArrayAdapter<String> adapter;
     // private SQLiteDatabase mDatabase;
     // private Context mContext;
     // private ClientBaseHelper db;
@@ -131,26 +131,28 @@ public class ClientList extends AppCompatActivity {
         mList = (ListView) findViewById(R.id.Client_list);
         ClientDataAccess client = new ClientDataAccess(getApplicationContext());
 
-        List<Client> clients = client.getClients();
-        List<String> clientName = new ArrayList<String>();
-        for (int i = 0; i < clients.size(); i++) {
-            Client c = clients.get(i);
-            clientName.add(c.getmName());
-        }
-
+        final List<Client> clients = client.getClients();
 
         if (adapter == null) {
-            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, clientName);
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
             mList.setAdapter(adapter);
-        } else {
             adapter.notifyDataSetChanged();
         }
 
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                for (Client c: clients) {
+                    adapter.add(c.getName());
+                }
+                adapter.notifyDataSetChanged();
+                mList.invalidateViews();
+            }
+        });
 
     }
 }
-
-
 
 
 

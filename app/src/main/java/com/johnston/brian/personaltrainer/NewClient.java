@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.UUID;
+
 /**
  * Created by brian on 9/4/2016.
  */
@@ -30,6 +32,7 @@ public class NewClient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
+
 
         mbtnAddClient = (Button) findViewById(R.id.submit_client);
         mbtnCancel = (Button) findViewById(R.id.cancel_client);

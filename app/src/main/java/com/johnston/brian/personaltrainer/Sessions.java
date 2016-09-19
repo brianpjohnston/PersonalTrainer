@@ -1,6 +1,7 @@
 package com.johnston.brian.personaltrainer;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by brian on 9/5/2016.
@@ -23,10 +25,8 @@ public class Sessions extends AppCompatActivity {
     private Button mpurchase;
     private ListView clients;
     public ListView mSessionList;
-    //public static ArrayList list;
-    public static ArrayAdapter adapter;
-    private static final String EXTRA_CLIENT_ID =
-            "com.johnston.brian.personaltrainer.client_id";
+        public static ArrayAdapter adapter;
+
 
 
     @Override
@@ -34,7 +34,9 @@ public class Sessions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sessions);
 
-        mSessionList =(ListView) findViewById(R.id.sessionList);
+
+
+        mSessionList = (ListView) findViewById(R.id.sessionList);
         mSessionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -55,8 +57,6 @@ public class Sessions extends AppCompatActivity {
         viewAll();
 
 
-
-
     }
 
     public void onPause() {
@@ -71,20 +71,21 @@ public class Sessions extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //UpdateUi();
-        //adapter.notifyDataSetChanged();
+
         viewAll();
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id ==R.id.logoff);{
+        if (id == R.id.logoff) ;
+        {
             super.onOptionsItemSelected(item);
             FragmentManager manager = getFragmentManager();
             DialogFragment dialog = new DialogFragment();
@@ -101,24 +102,35 @@ public class Sessions extends AppCompatActivity {
         mSessionList = (ListView) findViewById(R.id.sessionList);
         SessionDataAccess session = new SessionDataAccess((getApplicationContext()));
 
-        List<Session> sessions = session.getSessions();
+        final List<Session> sessions = session.getSessions();
 
         List<String> sessionName = new ArrayList<String>();
         for (int i = 0; i < sessions.size(); i++) {
             Session s = sessions.get(i);
+            // if(s.getClientID().equals(clientID))
             sessionName.add(s.getSessionName());
         }
 
         if (adapter == null) {
             adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sessionName);
             mSessionList.setAdapter(adapter);
-        } else {
-            // mSessionList.notify(); //why is notifydataset changed not showing?
-            //// TODO: 9/17/2016  fix this
+            adapter.notifyDataSetChanged();
+
         }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                for (Session s : sessions) {
+                    adapter.add(s.getSessionName());
+                }
+                adapter.notifyDataSetChanged();
+                mSessionList.invalidateViews();
+            }
+
+        });
     }
 
-    }
-
+}
 
 

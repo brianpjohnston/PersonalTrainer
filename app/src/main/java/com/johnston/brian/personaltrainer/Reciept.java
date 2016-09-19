@@ -29,8 +29,10 @@ public class Reciept extends AppCompatActivity {
             public void onClick(View view) {
                 //// TODO: 9/5/2016  implement print
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.printing), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Reciept.this, ClientList.class);
-                Reciept.this.startActivity(intent);
+
+                finish();
+                //Intent intent = new Intent(Reciept.this, ClientList.class);
+                //Reciept.this.startActivity(intent);
             }
 
         });
