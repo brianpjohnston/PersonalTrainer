@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import java.util.UUID;
+
 /**
  * Created by brian on 9/5/2016.
  */
@@ -19,10 +21,13 @@ public class SessionComplete extends AppCompatActivity {
     private CheckBox checkComplete;
     private Button mComplete;
     private Button mCancel;
+    private UUID sessionidPassed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sessionidPassed = (UUID) getIntent().getExtras().get("id");
         setContentView(R.layout.activity_session_complete);
         mCancel = (Button) findViewById(R.id.cancel_session);
         mCancel.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +55,7 @@ public class SessionComplete extends AppCompatActivity {
         mComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //// TODO: 9/7/2016
+
                 finish();
 
             }

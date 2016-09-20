@@ -56,7 +56,6 @@ public class ClientList extends AppCompatActivity {
                 Intent intent = new Intent(ClientList.this, Sessions.class);
                 Client thing = (Client) mList.getItemAtPosition(i);
                 intent.putExtra("id", thing.getmID());
-                //intent.putExtra()
                 ClientList.this.startActivity(intent);
             }
         });

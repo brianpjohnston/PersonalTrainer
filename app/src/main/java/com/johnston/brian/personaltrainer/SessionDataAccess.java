@@ -37,8 +37,9 @@ public class SessionDataAccess {
 
     public List<Session> getSessions(UUID id) {
         List<Session> sessions = new ArrayList<>();
-        ClientCursorWrapper cursor = querySessions(ClientDbSchema.SessionTable.Cols.UUID + " = ?",
-                new String[]{id.toString()});
+        String [] whereArgs = {id.toString()};
+        ClientCursorWrapper cursor = querySessions(ClientDbSchema.SessionTable.Cols.CLIENTUUID + " = ?",
+                whereArgs);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {

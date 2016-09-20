@@ -25,7 +25,7 @@ public class Sessions extends AppCompatActivity {
     private Button mpurchase;
     private ListView clients;
     public ListView mSessionList;
-    public static ArrayAdapter<String> adapter;
+    public static ArrayAdapter<Session> adapter;
     private UUID clientid;
 
 
@@ -45,6 +45,8 @@ public class Sessions extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Sessions.this, SessionComplete.class);
+                Session thing = (Session) mSessionList.getItemAtPosition(i);
+                intent.putExtra("id", thing.getSessionid());
                 Sessions.this.startActivity(intent);
             }
         });
@@ -54,7 +56,7 @@ public class Sessions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Sessions.this, Purchase.class);
-                //Client thing = (Client) mSessionList.getItemAtPosition(i);
+
                 intent.putExtra("id", clientid);
                 Sessions.this.startActivity(intent);
             }
@@ -115,7 +117,7 @@ public class Sessions extends AppCompatActivity {
         }
 
         if (adapter == null) {
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sessionName);
+            adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1);
             mSessionList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
@@ -125,7 +127,7 @@ public class Sessions extends AppCompatActivity {
                 public void run() {
                     adapter.clear();
                     for (Session s: sessions) {
-                        adapter.add(s.getSessionName());
+                        adapter.add(s);
                     }
                     adapter.notifyDataSetChanged();
                     mSessionList.invalidateViews();

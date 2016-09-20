@@ -50,4 +50,9 @@ public class Session {
     public void setComplete(boolean complete) {
         isComplete = complete;
     }
+
+    @Override
+    public String toString() {
+        return sessionName;
+    }
 }

@@ -21,9 +21,6 @@ public class Purchase extends AppCompatActivity {
     private Button mpurchase;
     private Button mCancel;
     private EditText mSessionName;
-    private static final String EXTRA_CLIENT_ID =
-            "com.johnston.brian.personaltrainer.client_id";
-    private static UUID clientID;
     private Button mSendMail;
     private Button mPrint;
     private UUID clientidnew;
@@ -37,16 +34,13 @@ public class Purchase extends AppCompatActivity {
         clientidnew = (UUID) getIntent().getExtras().get("id");
         setContentView(R.layout.activity_purchase_session);
 
-        /*
-        clientID = (UUID) getIntent()
-                .getSerializableExtra(EXTRA_CLIENT_ID);
-                */
+
         mSessionName = (EditText) findViewById(R.id.EditText_sessionName);
         mCancel = (Button) findViewById(R.id.cancel_payment);
         mCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //// TODO: 9/7/2016
+
                 finish();
             }
         });
@@ -55,7 +49,7 @@ public class Purchase extends AppCompatActivity {
         mPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //// TODO: 9/5/2016  implement print
+
 
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
