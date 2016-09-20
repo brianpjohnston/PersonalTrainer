@@ -112,8 +112,14 @@ public class Sessions extends AppCompatActivity {
         final List<Session> sessions = session.getSessions(id);
 
         List<String> sessionName = new ArrayList<String>();
+
         for (Session s: sessions) {
-            sessionName.add(s.getSessionName());
+            if(s.getisComplete().equals("false")) {
+
+                sessionName.add(s.getSessionName());
+            } else{
+
+            }
         }
 
         if (adapter == null) {

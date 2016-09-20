@@ -54,7 +54,7 @@ public class Purchase extends AppCompatActivity {
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
                 session.setClientID(clientidnew);
-                session.setComplete(false);
+                session.setComplete("false");
 
                 SessionDataAccess.addSession(session);
                 Sessions.adapter.notifyDataSetChanged();
@@ -75,7 +75,7 @@ public class Purchase extends AppCompatActivity {
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
                 session.setClientID(clientidnew);
-                session.setComplete(false);
+                session.setComplete("false");
 
                 SessionDataAccess.addSession(session);
                 Sessions.adapter.notifyDataSetChanged();

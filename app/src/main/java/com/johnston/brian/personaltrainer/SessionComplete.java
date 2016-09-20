@@ -55,6 +55,7 @@ public class SessionComplete extends AppCompatActivity {
         mComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SessionDataAccess.updateSession(sessionidPassed);
 
                 finish();
 

@@ -9,7 +9,7 @@ public class Session {
     private UUID sessionid;
     private String sessionName;
     private UUID clientID;
-    private boolean isComplete;
+    private String isComplete;
 
     public Session() {
         sessionid = UUID.randomUUID();
@@ -43,11 +43,11 @@ public class Session {
         this.clientID = clientID;
     }
 
-    public boolean getisComplete() {
+    public String getisComplete() {
         return isComplete;
     }
 
-    public void setComplete(boolean complete) {
+    public void setComplete(String complete) {
         isComplete = complete;
     }
 

@@ -37,6 +37,7 @@ public class SessionDataAccess {
 
     public List<Session> getSessions(UUID id) {
         List<Session> sessions = new ArrayList<>();
+
         String [] whereArgs = {id.toString()};
         ClientCursorWrapper cursor = querySessions(ClientDbSchema.SessionTable.Cols.CLIENTUUID + " = ?",
                 whereArgs);
@@ -118,6 +119,16 @@ public class SessionDataAccess {
         } finally {
             mDatabase.endTransaction();
         }
+    }
+
+    public static void updateSession(UUID sessionID){
+        ContentValues updatedValues = new ContentValues();
+        updatedValues.put(ClientDbSchema.SessionTable.Cols.ISCOMPLETE, "true");
+        String whereArgs[] = {sessionID.toString()};
+        String sessionString = "'"+ sessionID.toString() +"'";
+        String where = ClientDbSchema.SessionTable.Cols.UUID + "= " + sessionString;
+        mDatabase.update(ClientDbSchema.SessionTable.NAME, updatedValues,  where, null );
+
     }
 
 
