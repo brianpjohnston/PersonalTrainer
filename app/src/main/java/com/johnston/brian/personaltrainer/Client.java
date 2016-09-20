@@ -100,4 +100,9 @@ public class Client {
     public void setMccDate(String mccDate) {
         this.mccDate = mccDate;
     }
+
+    @Override
+    public String toString() {
+        return mName;
+    }
 }

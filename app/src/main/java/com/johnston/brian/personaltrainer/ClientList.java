@@ -30,7 +30,7 @@ public class ClientList extends AppCompatActivity {
     private ListView mList;
     // public static ArrayList clients;
     // public static  ArrayList list;
-    public static ArrayAdapter<String> adapter;
+    public static ArrayAdapter<Client> adapter;
     // private SQLiteDatabase mDatabase;
     // private Context mContext;
     // private ClientBaseHelper db;
@@ -54,6 +54,8 @@ public class ClientList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ClientList.this, Sessions.class);
+                Client thing = (Client) mList.getItemAtPosition(i);
+                intent.putExtra("id", thing.getmID());
                 //intent.putExtra()
                 ClientList.this.startActivity(intent);
             }
@@ -134,7 +136,7 @@ public class ClientList extends AppCompatActivity {
         final List<Client> clients = client.getClients();
 
         if (adapter == null) {
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+            adapter = new ArrayAdapter<Client>(this, android.R.layout.simple_list_item_1);
             mList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
@@ -144,12 +146,13 @@ public class ClientList extends AppCompatActivity {
             public void run() {
                 adapter.clear();
                 for (Client c: clients) {
-                    adapter.add(c.getName());
+                    adapter.add(c);
                 }
                 adapter.notifyDataSetChanged();
                 mList.invalidateViews();
             }
         });
+
 
     }
 }

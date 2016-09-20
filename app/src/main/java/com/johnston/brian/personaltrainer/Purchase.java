@@ -26,17 +26,21 @@ public class Purchase extends AppCompatActivity {
     private static UUID clientID;
     private Button mSendMail;
     private Button mPrint;
+    private UUID clientidnew;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        clientidnew = (UUID) getIntent().getExtras().get("id");
         setContentView(R.layout.activity_purchase_session);
 
-
+        /*
         clientID = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_CLIENT_ID);
+                */
         mSessionName = (EditText) findViewById(R.id.EditText_sessionName);
         mCancel = (Button) findViewById(R.id.cancel_payment);
         mCancel.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +59,7 @@ public class Purchase extends AppCompatActivity {
 
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
-                session.setClientID(UUID.randomUUID());
+                session.setClientID(clientidnew);
                 session.setComplete(false);
 
                 SessionDataAccess.addSession(session);
@@ -76,10 +80,10 @@ public class Purchase extends AppCompatActivity {
 
                 Session session = new Session();
                 session.setSessionName(mSessionName.getText().toString());
-                session.setClientID(UUID.randomUUID());
+                session.setClientID(clientidnew);
                 session.setComplete(false);
 
-                SessionDataAccess.dbtransNewSession(session);
+                SessionDataAccess.addSession(session);
                 Sessions.adapter.notifyDataSetChanged();
 
                 Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.emailSent), Toast.LENGTH_SHORT).show();

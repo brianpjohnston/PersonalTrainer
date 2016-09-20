@@ -35,10 +35,10 @@ public class SessionDataAccess {
 
     }
 
-    public List<Session> getSessions() {
+    public List<Session> getSessions(UUID id) {
         List<Session> sessions = new ArrayList<>();
-
-        ClientCursorWrapper cursor = querySessions(null, null);
+        ClientCursorWrapper cursor = querySessions(ClientDbSchema.SessionTable.Cols.UUID + " = ?",
+                new String[]{id.toString()});
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -58,7 +58,7 @@ public class SessionDataAccess {
     private static ClientCursorWrapper querySessions(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 ClientDbSchema.SessionTable.NAME,
-                null, //new String[]{"ClientDbSchema.ClientTable.Cols.CLIENTNAME"}, //Columns - null selects all columns
+                null, //
                 whereClause,
                 whereArgs,
                 null, //group by

@@ -25,13 +25,17 @@ public class Sessions extends AppCompatActivity {
     private Button mpurchase;
     private ListView clients;
     public ListView mSessionList;
-        public static ArrayAdapter adapter;
+    public static ArrayAdapter<String> adapter;
+    private UUID clientid;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       clientid = (UUID) getIntent().getExtras().get("id");
+
         setContentView(R.layout.activity_sessions);
 
 
@@ -50,11 +54,13 @@ public class Sessions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Sessions.this, Purchase.class);
+                //Client thing = (Client) mSessionList.getItemAtPosition(i);
+                intent.putExtra("id", clientid);
                 Sessions.this.startActivity(intent);
             }
 
         });
-        viewAll();
+        viewAll(clientid);
 
 
     }
@@ -63,6 +69,7 @@ public class Sessions extends AppCompatActivity {
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
     }
 
     @Override
@@ -70,7 +77,7 @@ public class Sessions extends AppCompatActivity {
         super.onResume();
 
 
-        viewAll();
+        viewAll(clientid);
     }
 
     @Override
@@ -95,33 +102,39 @@ public class Sessions extends AppCompatActivity {
 
     }
 
-    public void viewAll() {
+    public void viewAll(UUID id) {
 
         mSessionList = (ListView) findViewById(R.id.sessionList);
         SessionDataAccess session = new SessionDataAccess((getApplicationContext()));
 
-        final List<Session> sessions = session.getSessions();
+        final List<Session> sessions = session.getSessions(id);
 
+        List<String> sessionName = new ArrayList<String>();
+        for (Session s: sessions) {
+            sessionName.add(s.getSessionName());
+        }
 
         if (adapter == null) {
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sessionName);
             mSessionList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-        }
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.clear();
-                for (Session s : sessions) {
-                    adapter.add(s.getSessionName());
+        } else {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.clear();
+                    for (Session s: sessions) {
+                        adapter.add(s.getSessionName());
+                    }
+                    adapter.notifyDataSetChanged();
+                    mSessionList.invalidateViews();
                 }
-                adapter.notifyDataSetChanged();
-                mSessionList.invalidateViews();
-            }
-
-        });
+            });
+        }
     }
+
+
 
 }
 
