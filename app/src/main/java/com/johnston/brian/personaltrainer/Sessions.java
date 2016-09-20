@@ -111,15 +111,14 @@ public class Sessions extends AppCompatActivity {
 
         final List<Session> sessions = session.getSessions(id);
 
-        List<String> sessionName = new ArrayList<String>();
+        final List<Session> sessionName = new ArrayList<Session>();
 
         for (Session s: sessions) {
             if(s.getisComplete().equals("false")) {
 
-                sessionName.add(s.getSessionName());
-            } else{
-
+                sessionName.add(s);
             }
+
         }
 
         if (adapter == null) {
@@ -132,7 +131,7 @@ public class Sessions extends AppCompatActivity {
                 @Override
                 public void run() {
                     adapter.clear();
-                    for (Session s: sessions) {
+                    for (Session s: sessionName) {
                         adapter.add(s);
                     }
                     adapter.notifyDataSetChanged();

@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.UUID;
@@ -30,13 +32,14 @@ public class NewClient extends AppCompatActivity {
     private EditText mBilladdress;
     private EditText mCreditNum;
     private EditText mccDate;
+    private ImageButton mcamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
 
-
+        mcamera =(ImageButton) findViewById(R.id.take_Image);
         mbtnAddClient = (Button) findViewById(R.id.submit_client);
         mbtnCancel = (Button) findViewById(R.id.cancel_client);
         mName = (EditText) findViewById(R.id.edittext_Name);
@@ -46,6 +49,8 @@ public class NewClient extends AppCompatActivity {
         mBillName = (EditText) findViewById(R.id.edittext_Cardholder);
         mCreditNum = (EditText) findViewById(R.id.edittext_CardNumber);
         mccDate = (EditText) findViewById(R.id.edittext_CardExp);
+
+
 
 
         mbtnAddClient.setOnClickListener(new View.OnClickListener() {

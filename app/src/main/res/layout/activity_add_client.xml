@@ -46,12 +46,13 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@mipmap/no_photo"/>
 
-            <ImageView
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/take_Image"
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/camera"/>
+                android:src="@mipmap/camera"
+                android:clickable="true"/>
 
             <EditText
                 android:id="@+id/edittext_Name"
