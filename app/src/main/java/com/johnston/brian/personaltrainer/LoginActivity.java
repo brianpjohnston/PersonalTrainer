@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.success_login), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, ClientList.class);
                             LoginActivity.this.startActivity(intent);
+                            finish();
                         }
                     else{
 

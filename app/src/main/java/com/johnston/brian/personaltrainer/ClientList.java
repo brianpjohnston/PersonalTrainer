@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,20 +80,28 @@ public class ClientList extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
+        viewAll();
+
     }
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        //UpdateUi();
-        //adapter.notifyDataSetChanged();
+
         viewAll();
     }
 
@@ -114,9 +123,12 @@ public class ClientList extends AppCompatActivity {
             dialog.show(manager, "Logout");
 
 
+
             return true;
 
+
         }
+
     }
 
     public void UpdateUi() {

@@ -18,9 +18,15 @@ public class DialogFragment extends android.app.DialogFragment {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent((getActivity()), LoginActivity.class);
+                        //getActivity().finish();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+
+
                     }
                 })
                 .create();
+
+
     }
 }
