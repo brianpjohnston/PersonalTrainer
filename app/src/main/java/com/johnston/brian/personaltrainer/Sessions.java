@@ -3,6 +3,8 @@ package com.johnston.brian.personaltrainer;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +14,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +32,8 @@ public class Sessions extends AppCompatActivity {
     public ListView mSessionList;
     public static ArrayAdapter<Session> adapter;
     private UUID clientid;
+    private ImageView mPhotoView;
+
 
 
 
@@ -35,8 +42,19 @@ public class Sessions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
        clientid = (UUID) getIntent().getExtras().get("id");
+       setContentView(R.layout.activity_sessions);
 
-        setContentView(R.layout.activity_sessions);
+        File imgFile = new  File("/storage/sdcard/Pictures/IMG_" + clientid.toString() +".jpg");
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+            ImageView mPhotoView = (ImageView) findViewById(R.id.client_Image_session);
+
+            mPhotoView.setImageBitmap(myBitmap);
+
+        }
+
 
 
 

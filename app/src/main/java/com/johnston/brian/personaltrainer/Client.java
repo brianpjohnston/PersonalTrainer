@@ -105,4 +105,9 @@ public class Client {
     public String toString() {
         return mName;
     }
+
+    public String getPhotoFilename() {
+        return "IMG_" + getID().toString() + ".jpg";
+
+    }
 }

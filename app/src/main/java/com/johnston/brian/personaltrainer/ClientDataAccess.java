@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 import android.widget.ListView;
 
 import com.johnston.brian.personaltrainer.database.ClientBaseHelper;
@@ -11,6 +12,7 @@ import com.johnston.brian.personaltrainer.database.ClientCursorWrapper;
 import com.johnston.brian.personaltrainer.database.ClientDbSchema;
 import com.johnston.brian.personaltrainer.database.ClientDbSchema.ClientTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -135,6 +137,16 @@ public class ClientDataAccess {
         String clientName = c.getName();
         return clientName;
 
+    }
+    public File getPhotoFile(Client client) {
+        File externalFilesDir = mContext
+                .getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        if (externalFilesDir == null) {
+            return null;
+        }
+
+        return new File(externalFilesDir, client.getPhotoFilename());
     }
 
 

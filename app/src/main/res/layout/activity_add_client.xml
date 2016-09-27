@@ -44,7 +44,7 @@
                 android:layout_height="100dp"
                 android:id="@+id/client_Image"
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/no_photo"/>
+                />
 
             <ImageButton
                 android:layout_width="50dp"
