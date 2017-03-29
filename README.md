@@ -2,7 +2,7 @@
 Personal Trainer app for school project
 
 
-trainers this time around. Here’s the scenario.
+Here’s the scenario.
 You’re a personal trainer who trains your clients at their home. Your clients pay for a given number of training sessions each month. Each time you train them, you mark off a session. Currently, you carry a binder around with each customers sign in sheet to each session. This has started to become tedious, not to mention that you forget your pen every time. Since you’re in school and taking the Introduction to Android course, you decide to build an application to handle this for you.
 For this assignment, create an android project for our Personal Trainer Customer Management Application. Name it whatever you like. After you’ve created your project, search the web and find some icons. There are plenty out there. I want you to add an image resource for the logo.
 Add string resources for the following:
